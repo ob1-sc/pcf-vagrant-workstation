@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   # ubuntu client VM
   config.vm.define "pcf-vagrant-client" do |clivm|
 
-    clivm.vm.box = "ubuntu/xenial64"
+    clivm.vm.box = "ubuntu/bionic64"
     clivm.vm.provider :virtualbox do |v, override|
       v.memory = 1024
       v.cpus = 1
