@@ -2,7 +2,7 @@ local.retry
 *.swp
 
 # Vagrant
-.Vagrant
+.vagrant
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
