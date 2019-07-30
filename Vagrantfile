@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com.
 
   # ubuntu client VM
-  config.vm.define "pcf-workstation" do |clivm|
+  config.vm.define "pcf-vagrant-client" do |clivm|
 
     clivm.vm.box = "ubuntu/xenial64"
     clivm.vm.provider :virtualbox do |v, override|
@@ -22,6 +22,13 @@ Vagrant.configure("2") do |config|
 
     # uncomment to add additional synced folder mapping
     clivm.vm.synced_folder "~/Workspace", "/home/vagrant/workspace"
+
+    config.vm.provision "shell", inline: "sudo apt update; sudo apt install -y python-jmespath"
+
+    clivm.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "/home/vagrant/workspace/work/pcf-ops-playbook/local.yml"
+      ansible.verbose = false
+    end
 
   end
 
