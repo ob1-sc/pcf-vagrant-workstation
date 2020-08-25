@@ -11,6 +11,8 @@ GIT_EMAIL="simonobrien@vmware.com"
 
 PROVISION_PLAYBOOK="/home/vagrant/workspace/work/tanzu-ops-playbook/local.yml"
 
+PIVNET_API_TOKEN="CHANGEME"
+
 Vagrant.configure("2") do |config|
 
   # The most common configuration options are documented and commented below.
@@ -46,6 +48,9 @@ Vagrant.configure("2") do |config|
     vagrant.vm.provision "ansible_local" do |ansible|
       ansible.playbook = PROVISION_PLAYBOOK
       ansible.verbose = false
+      ansible.extra_vars = {
+        pivnet_api_token: PIVNET_API_TOKEN
+      }
     end
 
     # set git username and email
